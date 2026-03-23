@@ -1,0 +1,3 @@
+class StoreAssignmentSerializer
+
+end

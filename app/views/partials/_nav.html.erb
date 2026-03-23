@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg" id="nav">
+  <div class="container">
+    <!-- Mobile toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible navbar content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left-aligned navigation items -->
+      <ul class="navbar-nav me-auto">
+
+        <!-- **NOTE** Partial nav; not for regular employees -->
+        
+        <li class="nav-item">
+          <%= link_to 'Stores', stores_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Employees', employees_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Assignments', assignments_path, class: 'nav-link' %>
+        </li>
+
+
+
+
+
+
+
+
+
+      </ul>
+
+      <!-- Right-aligned navigation items -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <% if logged_in?%>
+            <%= link_to 'Logout', logout_path, class: 'nav-link' %>
+          <% else %>
+            <%= link_to 'Login', login_path, class: 'nav-link' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

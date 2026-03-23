@@ -1,0 +1,44 @@
+module Api::V1
+  class StoresController < ApiController
+
+    def index
+      @stores = Store.alphabetical.all
+      render json: StoreSerializer.new(@stores)
+    end
+
+    def detail
+      @store = Store.find(params[:id])
+      render json: StoreSerializer.new(@store)
+    end
+
+    def shifts
+      @store = Store.find(params[:id])
+      date_range = DateRange.new(Date.current)
+      @shifts = @store.shifts.for_dates(date_range)
+      render json: StoreSerializer.new(@store)
+    end
+
+    def add_assignment
+      @store = Store.find(params[:id])
+      @assignment = Assignment.new(assignment_params)
+      @assignment.store = @store
+      @assignment.start_date = Date.current
+      @assignment.save
+      render json: AssignmentSerializer.new(@assignment)
+    end
+
+    def end_assignment
+      @assignment = Assignment.find(params[:id])
+      @assignment.end_date = Date.current
+      @assignment.save
+      render json: AssignmentSerializer.new(@assignment)
+    end
+
+    private
+
+    def assignment_params
+      params.require(:assignment).permit(:employee_id, :pay_grade_id)
+    end
+
+  end
+end

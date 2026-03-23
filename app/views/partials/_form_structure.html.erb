@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-header"><%= type_of_form %></div>
+      <div class="card-body p-4">
+        <%= simple_form_for(object) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= render partial: "#{fields}", locals: { f: f } %>
+          </div>
+          <div class="form-actions mt-3">
+            <%= f.button :submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to '&larr; Back', :back, class: 'text-muted small' %>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+class EmployeeShiftSerializer
+
+end
