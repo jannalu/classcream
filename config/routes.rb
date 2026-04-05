@@ -20,8 +20,14 @@ Rails.application.routes.draw do
       delete 'shifts/:id', to: 'shifts#destroy'
 
       # Student API endpoint routes go here...
+      get 'employees',     to: 'employees#index',     as: :api_employees
+      get 'spotlight/:id', to: 'employees#spotlight', as: :spotlight
+
+      get 'stores/:id/upcoming', to: 'stores#upcoming', as: :stores_upcoming
 
       
+      
+
 
 
 
@@ -37,18 +43,28 @@ Rails.application.routes.draw do
   get 'home/search', to: 'home#search', as: :search
 
   # Authentication routes
+  # resources :sessions
+  # resources :users
+
+  get 'login', to: 'sessions#new', as: :login
+  post 'sessions', to: 'sessions#create', as: :sessions
+  get   'logout', to: 'sessions#destroy',  as: :logout
 
   
+  # get 'shifts/:id', to: 'shifts#show', as: :shift_show
+  # get 'shifts/:id', to: 'shifts#show', as: :shift_detail
 
 
   # Resource routes (maps HTTP verbs to controller actions automatically):
-
+  resource :session, only: [:new, :create, :destroy]
+  resources :stores, except: [:destroy]
+  resources :employees
+  resources :assignments
+  resources :shifts
   
-
+  resources :pay_grades, except: [:destroy]
 
   # Payroll routes
-
-
 
   
   # You can have the root of your site routed with 'root'
