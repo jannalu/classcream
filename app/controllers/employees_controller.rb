@@ -1,6 +1,5 @@
 class EmployeesController < ApplicationController
-  # before_action :set_employee, only: [:show, :update, :edit, :destroy]
-  # before_action :check_login
+  before_action :set_employee, only: [:show, :update, :edit, :destroy]
   authorize_resource
 
   def index
@@ -64,5 +63,9 @@ class EmployeesController < ApplicationController
   def employee_params
     params.require(:employee).permit(:first_name, :last_name, :ssn, :phone, 
       :date_of_birth, :role, :username, :password, :password_confirmation, :active)
+  end
+
+  def set_employee
+    @employee = Employee.find(params[:id])
   end
 end
