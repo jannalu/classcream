@@ -3,12 +3,18 @@ module Api::V1
 
     def index
       # your code here...
+      @employees = Employee.active.alphabetical
+      # if(params[:active].present?)
+      #   @employees = params[:active] == "true" ? @employees.active : @employees.inactive
+      # end
+      render json: EmployeeSerializer.new(@employees).serializable_hash
       
     end
 
     def spotlight
       # your code here...
-      
+      @employee = Employee.find(params[:id])
+      render json: EmployeeSpotlightSerializer.new(@employee).serializable_hash
     end
 
     def employees_search

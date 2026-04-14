@@ -3,7 +3,7 @@ class StoreShiftSerializer
   set_type :shift
 
   attribute :employee do |object|
-    ShiftEmployeeSerializer.new(object.employee).serializable_hash
+    ShiftEmployeeSerializer.new(object).serializable_hash
   end
 
   attributes :date, :status

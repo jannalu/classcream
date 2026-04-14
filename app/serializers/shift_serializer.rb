@@ -1,6 +1,17 @@
 class ShiftSerializer
   include FastJsonapi::ObjectSerializer
+  # set_type :shift
   attributes :date, :status
+
+  attribute :store do |object|
+    ShiftStoreSerializer.new(object).serializable_hash
+  end
+
+  attribute :employee do |object|
+    ShiftEmployeeSerializer.new(object).serializable_hash
+  end
+
+  attribute :date
 
   attribute :start_time do |object|
     object.start_time&.strftime("%H:%M")
@@ -10,13 +21,27 @@ class ShiftSerializer
     object.end_time&.strftime("%H:%M")
   end
 
-  attribute :store do |object|
-    object.store&.name
+  attribute :duration do |object|
+    object.duration
   end
 
-  attribute :employee do |object|
-    object.employee&.proper_name
+  attribute :report_completed do |object|
+    object.report_completed?
   end
+
+  attribute :jobs_worked do |object|
+    object.jobs.map(&:name)
+
+  end
+
+
+  # attribute :store do |object|
+  #   object.store&.name
+  # end
+
+  # attribute :employee do |object|
+  #   object.employee&.proper_name
+  # end
 
 
 end

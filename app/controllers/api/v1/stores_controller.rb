@@ -34,6 +34,12 @@ module Api::V1
       render json: AssignmentSerializer.new(@assignment)
     end
 
+    def upcoming 
+      @store = Store.find(params[:id])
+      @shifts = Shift.for_store(@store).upcoming.chronological
+      render json: ShiftUpcomingSerializer.new(@shifts).serializable_hash
+    end
+
     private
 
     def assignment_params

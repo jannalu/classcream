@@ -3,11 +3,16 @@ module Api::V1
 
     def upcoming
       # your code here...
+      @store = Store.find(params[:id])
+      @shifts = Shift.for_store(@store).upcoming.chronological
+      render json: ShiftSerializer.new(@shifts).serializable_hash
 
     end
 
     def show
       # your code here...
+      @shift = Shift.find(params[:id])
+      render json: ShiftSerializer.new(@shift).serializable_hash
 
     end
 

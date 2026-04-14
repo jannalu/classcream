@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       put 'clock_in', to: 'shifts#clock_in', as: :clock_in
       put 'clock_out', to: 'shifts#clock_out', as: :clock_out
       post 'employees/:id/add_shift', to: 'shifts#add_shift_for_employee', as: :add_shift_for_employee
+
       delete 'shifts/:id', to: 'shifts#destroy'
 
       # Student API endpoint routes go here...
@@ -24,6 +25,10 @@ Rails.application.routes.draw do
       get 'spotlight/:id', to: 'employees#spotlight', as: :spotlight
 
       get 'stores/:id/upcoming', to: 'stores#upcoming', as: :stores_upcoming
+
+      get 'shifts/:id', to: 'shifts#show', as: :v1_shift
+      get 'shifts/:id', to: 'shifts#show', as: :v1_shift_show
+      
 
       
       
