@@ -1,6 +1,6 @@
 class EmployeeShiftSerializer
-
   include FastJsonapi::ObjectSerializer
+  set_type :shift
 
   attributes :date, :status
 
@@ -13,7 +13,8 @@ class EmployeeShiftSerializer
   end
 
   attribute :store do |object|
-    object.store&.name
+    object.assignment.store.name
+
   end
   
 end

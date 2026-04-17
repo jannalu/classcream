@@ -68,8 +68,13 @@ Rails.application.routes.draw do
   resources :shifts
   
   resources :pay_grades, except: [:destroy]
+  resources :jobs, except: [:show]
+  resources :pay_grade_rates, only: [:new, :create]
+  resources :shift_jobs, only: [:new, :create, :destroy]
 
   # Payroll routes
+  get 'employee_form',    to: 'payrolls#employee_form',    as: :employee_form
+  get 'employee_payroll', to: 'payrolls#employee_payroll', as: :employee_payroll
 
   
   # You can have the root of your site routed with 'root'

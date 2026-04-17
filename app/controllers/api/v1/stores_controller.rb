@@ -3,19 +3,19 @@ module Api::V1
 
     def index
       @stores = Store.alphabetical.all
-      render json: StoreSerializer.new(@stores)
+      render json: StoreSerializer.new(@stores).serializable_hash
     end
 
     def detail
       @store = Store.find(params[:id])
-      render json: StoreSerializer.new(@store)
+      render json: StoreSerializer.new(@store).serializable_hash
     end
 
     def shifts
       @store = Store.find(params[:id])
       date_range = DateRange.new(Date.current)
       @shifts = @store.shifts.for_dates(date_range)
-      render json: StoreSerializer.new(@store)
+      render json: StoreSerializer.new(@store).serializable_hash
     end
 
     def add_assignment
@@ -24,14 +24,14 @@ module Api::V1
       @assignment.store = @store
       @assignment.start_date = Date.current
       @assignment.save
-      render json: AssignmentSerializer.new(@assignment)
+      render json: AssignmentSerializer.new(@assignment).serializable_hash
     end
 
     def end_assignment
       @assignment = Assignment.find(params[:id])
       @assignment.end_date = Date.current
       @assignment.save
-      render json: AssignmentSerializer.new(@assignment)
+      render json: AssignmentSerializer.new(@assignment).serializable_hash
     end
 
     def upcoming 

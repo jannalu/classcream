@@ -3,8 +3,9 @@ module Api::V1
 
     def index
       @jobs = Job.active.alphabetical
-      render json: JobsSerializer.new(@jobs).serializable_hash
+      render json: JobSerializer.new(@jobs).serializable_hash
     end
 
+    
   end
 end
