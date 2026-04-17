@@ -3,7 +3,7 @@ class ShiftUpcomingSerializer
   set_type :shift_upcoming 
   
   attribute :store do |object|
-    object.store.name
+    object.assignment.store.name
   end
 
   attribute :shifts do |object|

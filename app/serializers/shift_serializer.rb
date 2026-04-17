@@ -7,10 +7,14 @@ class ShiftSerializer
     ShiftStoreSerializer.new(object).serializable_hash
   end
 
-  attribute :employee do |object|
-    ShiftEmployeeSerializer.new(object).serializable_hash
-  end
+  # attribute :employee do |object|
+  #   ShiftEmployeeSerializer.new(object).serializable_hash
+  # end
 
+  attribute :employee do |object|
+    ShiftEmployeeSerializer.new(object.employee, params: { assignment: object.assignment }).serializable_hash
+  end
+  
   attribute :date
 
   attribute :start_time do |object|
