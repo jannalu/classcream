@@ -1,7 +1,7 @@
 class ShiftSerializer
   include FastJsonapi::ObjectSerializer
-  # set_type :shift
-  attributes :date, :status
+  set_type :shift
+  
 
   attribute :store do |object|
     ShiftStoreSerializer.new(object).serializable_hash

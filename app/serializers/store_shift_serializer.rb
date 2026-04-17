@@ -6,7 +6,7 @@ class StoreShiftSerializer
     ShiftEmployeeSerializer.new(object).serializable_hash
   end
 
-  attributes :date, :status
+  attributes :date
 
   attribute :start_time do |object|
     object.start_time.strftime("%H:%M")

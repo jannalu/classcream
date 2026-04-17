@@ -37,7 +37,7 @@ module Api::V1
     def upcoming 
       @store = Store.find(params[:id])
       @shifts = Shift.for_store(@store).upcoming.chronological
-      render json: ShiftUpcomingSerializer.new(@shifts).serializable_hash
+      render json: ShiftUpcomingSerializer.new(@shifts, is_collection: true).serializable_hash
     end
 
     private
