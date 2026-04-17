@@ -12,9 +12,9 @@ class EmployeeShiftSerializer
     object.end_time&.strftime("%H:%M")
   end
 
-  attribute :store do |object|
-    object.assignment.store.name
+  # attribute :store do |object|
+  #   object.assignment.store.name
 
-  end
+  # end
   
 end

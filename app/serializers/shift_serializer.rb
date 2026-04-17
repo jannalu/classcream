@@ -22,7 +22,8 @@ class ShiftSerializer
   end
 
   attribute :duration do |object|
-    object.duration
+    object.duration.to_f
+
   end
 
   attribute :report_completed do |object|
