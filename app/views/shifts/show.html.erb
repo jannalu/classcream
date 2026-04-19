@@ -1,0 +1,21 @@
+<%# app/views/shifts/show.html.erb %>
+<h1>Shift Details</h1>
+
+<p><strong>Employee:</strong> <%= @shift.assignment.employee.proper_name %></p>
+<p><strong>Store:</strong> <%= @shift.assignment.store.name %></p>
+<p><strong>Date:</strong> <%= @shift.date.strftime("%B %-d, %Y") %></p>
+<p><strong>Start:</strong> <%= @shift.start_time.strftime("%l:%M %P").strip %></p>
+<p><strong>End:</strong> <%= @shift.end_time&.strftime("%l:%M %P")&.strip %></p>
+<p><strong>Status:</strong> <%= @shift.status %></p>
+<p><strong>Notes:</strong> <%= @shift.notes %></p>
+
+<h3><%= @shift.jobs.count %> Job<%= @shift.jobs.count == 1 ? "" : "s" %></h3>
+<ul>
+  <% @shift.jobs.each do |job| %>
+    <li><%= job.name %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Add a Job", new_shift_job_path(shift_id: @shift.id), class: "btn btn-dark" %>
+<%= link_to "Edit Shift", edit_shift_path(@shift), class: "btn btn-dark" %>
+<%= link_to "Display All", shifts_path, class: "btn btn-danger" %>

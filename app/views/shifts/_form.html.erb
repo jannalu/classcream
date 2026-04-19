@@ -1,0 +1,24 @@
+<%= form_with model: shift, local: true do |f| %>
+  <% if shift.errors.any? %>
+    <div class="alert alert-danger">
+      <p>Please review the problems below</p>
+      <% shift.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :assignment_id, "Assignment", class: "form-label" %>
+    <%= f.select :assignment_id, Assignment.current.chronological.map { |a| ["#{a.employee.name} at #{a.store.name}", a.id] }, { include_blank: "Select Assignment" }, class: "form-select" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :date, "Date", class: "form-label" %>
+    <%= f.date_field :date, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :start_time, "Start Time", class: "form-label" %>
+    <%= f.time_select :start_time, { minute_step: 15 }, class: "form-select" %>
+  </div>
+  <%= f.submit "Create Shift", class: "btn btn-dark" %>
+<% end %>

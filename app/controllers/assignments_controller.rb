@@ -23,6 +23,7 @@ class AssignmentsController < ApplicationController
 
   def create
     @assignment = Assignment.new(assignment_params)
+    @assignment.start_date = Date.current
     if @assignment.save
       flash[:notice] = "Successfully added the assignment."
       redirect_to assignments_path

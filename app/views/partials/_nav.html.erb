@@ -10,17 +10,29 @@
       <!-- Left-aligned navigation items -->
       <ul class="navbar-nav me-auto">
 
-        <!-- **NOTE** Partial nav; not for regular employees -->
-        
-        <li class="nav-item">
-          <%= link_to 'Stores', stores_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Employees', employees_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Assignments', assignments_path, class: 'nav-link' %>
-        </li>
+        <% if current_user&.admin_role? || current_user&.manager_role? %>
+          <li class="nav-item">
+            <%= link_to 'Stores', stores_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Employees', employees_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Assignments', assignments_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Shifts', shifts_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Jobs', jobs_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Pay Grades', pay_grades_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Employee Payroll', employee_form_path, class: 'nav-link' %>
+          </li>
+        <% end %>
 
 
 

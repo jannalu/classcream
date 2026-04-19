@@ -1,0 +1,34 @@
+<h1>Assignment Details</h1>
+
+<p><strong>Employee:</strong> <%= @assignment.employee.proper_name %></p>
+<p><strong>Store:</strong> <%= @assignment.store.name %></p>
+<p><strong>Pay Grade:</strong> <%= @assignment.pay_grade.level %></p>
+<p><strong>Start Date:</strong> <%= @assignment.start_date.strftime("%B %-d, %Y") %></p>
+<p><strong>End Date:</strong> <%= @assignment.end_date ? @assignment.end_date.strftime("%B %-d, %Y") : "Current" %></p>
+
+<h3><%= @assignment.shifts.count %> Shifts</h3>
+<table class="table table-sm">
+  <thead class="table-dark">
+    <tr>
+      <th>Shift</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @assignment.shifts.chronological.each do |shift| %>
+      <tr>
+        <td><%= link_to "View", shift_path(shift) %></td>
+        <td><%= shift.date.strftime("%m/%d/%y") %></td>
+        <td><%= shift.start_time.strftime("%l:%M %P").strip %></td>
+        <td><%= shift.end_time&.strftime("%l:%M %P")&.strip %></td>
+        <td><%= shift.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Edit Assignment", edit_assignment_path(@assignment), class: "btn btn-dark" %>
+<%= link_to "Display All", assignments_path, class: "btn btn-danger" %>

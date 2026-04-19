@@ -1,0 +1,45 @@
+<%# app/views/stores/index.html.erb %>
+<h1>Active Stores owned by ClassicCreamery</h1>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Current Assignments</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_stores.each do |store| %>
+      <tr>
+        <td><%= store.name %></td>
+        <td><%= number_to_phone(store.phone) %></td>
+        <td><%= store.assignments.current.count %></td>
+        <td><%= link_to "View", store_path(store), class: "btn btn-sm btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Inactive Stores</h2>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inactive_stores.each do |store| %>
+      <tr>
+        <td><%= store.name %></td>
+        <td><%= store.phone %></td>
+        <td><%= link_to "View", store_path(store), class: "btn btn-sm btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Add Store", new_store_path, class: "btn btn-dark mt-3" %>

@@ -1,0 +1,13 @@
+<h1><%= @store.name %></h1>
+<p><strong>Phone:</strong> <%= @store.phone %></p>
+<p><strong>Active:</strong> <%= @store.active? ? "Yes" : "No" %></p>
+
+<h3>Current Employees</h3>
+<ul>
+  <% @current_employees.each do |employee| %>
+    <li><%= employee.proper_name %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Edit Store", edit_store_path(@store), class: "btn btn-dark" %>
+<%= link_to "Display All", stores_path, class: "btn btn-danger" %>

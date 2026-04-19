@@ -1,0 +1,55 @@
+<h1>Upcoming Shifts</h1>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Employee</th>
+      <th>Store</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shifts.select { |s| s.status != "finished" }.each do |shift| %>
+      <tr>
+        <td><%= shift.assignment.employee.proper_name %></td>
+        <td><%= shift.assignment.store.name %></td>
+        <td><%= shift.date.strftime("%m/%d/%y") %></td>
+        <td><%= shift.start_time.strftime("%l:%M %P").strip %></td>
+        <td><%= shift.end_time&.strftime("%l:%M %P")&.strip %></td>
+        <td><%= shift.status %></td>
+        <td><%= link_to "View", shift_path(shift), class: "btn btn-sm btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Completed Shifts</h2>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Employee</th>
+      <th>Store</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>End</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shifts.select { |s| s.status == "finished" }.each do |shift| %>
+      <tr>
+        <td><%= shift.assignment.employee.proper_name %></td>
+        <td><%= shift.assignment.store.name %></td>
+        <td><%= shift.date.strftime("%m/%d/%y") %></td>
+        <td><%= shift.start_time.strftime("%l:%M %P").strip %></td>
+        <td><%= shift.end_time&.strftime("%l:%M %P")&.strip %></td>
+        <td><%= link_to "View", shift_path(shift), class: "btn btn-sm btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New Shift", new_shift_path, class: "btn btn-dark mt-3" %>

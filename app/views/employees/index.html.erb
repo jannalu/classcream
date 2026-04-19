@@ -1,0 +1,44 @@
+<h1>Active Employees at ClassicCreamery</h1>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Current Assignment</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= number_to_phone(employee.phone) %></td>
+        <td><%= employee.current_assignment ? "#{employee.current_assignment.store.name} (#{employee.current_assignment.pay_grade.level})" : "n/a" %></td>
+        <td><%= link_to "View", employee_path(employee), class: "btn btn-sm btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Inactive Employees</h2>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inactive_employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.phone %></td>
+        <td><%= link_to "View", employee_path(employee), class: "btn btn-sm btn-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New Employee", new_employee_path, class: "btn btn-dark mt-3" %>

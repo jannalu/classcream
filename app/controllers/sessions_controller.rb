@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       session[:employee_id] = employee.id
       redirect_to home_path, notice: "Logged in!"
     else
-      flash[:error] = "Invalid username or password."
+      flash[:error] = "Username and/or password is invalid."
       render :new
 
     end

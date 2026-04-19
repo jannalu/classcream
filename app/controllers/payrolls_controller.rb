@@ -1,41 +1,20 @@
 class PayrollsController < ApplicationController
-  authorize_resource
+  # before_action :check_login, only: [:employee_form]
+  # before_action :check_admin, only: [:employee_form]
+  authorize_resource only: [:employee_form]
 
   def employee_form
-    unless current_user.admin_role?
-      redirect_to home_path
-      return
-    end
   end
-
-  # def employee_payroll
-  #   unless current_user.admin_role?
-  #     redirect_to home_path
-  #     return
-  #   end
-  #   @employee = Employee.find(params[:employee_id])
-
-  #   start_date = params[:start_date]
-  #   end_date   = params[:end_date]
-
-  #   @employee_payroll = Shift.for_employee(@employee).for_past_days((end_date - start_date) + 1)
-
-  #   render :employee_payroll
-
-  # end
 
   def employee_payroll
-    unless current_user.admin_role?
-      redirect_to home_path
-      return
-    end
 
     @employee = Employee.find(params[:employee_id])
+    @start_date = params[:start_date].to_date
+    @end_date = params[:end_date].to_date
 
-    @employee_payroll = Shift.all
+    @employee_payroll = @employee.shifts.where(date: @start_date..@end_date)
 
     render :employee_payroll
+
   end
-
-
 end

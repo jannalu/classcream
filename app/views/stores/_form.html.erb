@@ -1,0 +1,40 @@
+<%= form_with model: store, local: true do |f| %>
+  <% if store.errors.any? %>
+    <div class="alert alert-danger">
+      <p>Please review the problems below</p>
+      <% store.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :name, "Name", class: "form-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :street, "Street", class: "form-label" %>
+    <%= f.text_field :street, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :city, "City", class: "form-label" %>
+    <%= f.text_field :city, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :state, "State", class: "form-label" %>
+    <%= f.text_field :state, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :zip, "Zip", class: "form-label" %>
+    <%= f.text_field :zip, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :phone, "Phone", class: "form-label" %>
+    <%= f.text_field :phone, class: "form-control" %>
+  </div>
+  <div class="mb-3 form-check">
+    <%= f.check_box :active, class: "form-check-input" %>
+    <%= f.label :active, class: "form-check-label" %>
+  </div>
+  <%= f.submit class: "btn btn-dark" %>
+<% end %>

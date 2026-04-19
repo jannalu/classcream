@@ -38,13 +38,27 @@ $(function() {
 
 
 // Search submit on enter
-$(document).ready(function() {
+// $(document).ready(function() {
+//   function submitForm() {
+//     document.getElementById("search").submit();
+//   }
+//   document.onkeydown = function () {
+//     if (window.event.keyCode == '13') {
+//         submitForm();
+//     }
+//   }
+// });
+
+$(document).ready(function() {//CLAUDE
   function submitForm() {
-    document.getElementById("search").submit();
+    var searchForm = document.getElementById("search");
+    if (searchForm) {
+      searchForm.submit();
+    }
   }
   document.onkeydown = function () {
     if (window.event.keyCode == '13') {
-        submitForm();
+      submitForm();
     }
   }
 });

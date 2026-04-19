@@ -1,0 +1,2 @@
+<h2>Welcome, <%= current_user.proper_name %></h2>
+<%= react_component("EmployeeHome", { employeeId: current_user.id }) %>

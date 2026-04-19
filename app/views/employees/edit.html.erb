@@ -1,0 +1,5 @@
+<h1>Edit <%= @employee.proper_name %></h1>
+
+<%= render 'form', employee: @employee %>
+
+<%= link_to "Cancel", employee_path(@employee), class: "btn btn-secondary mt-2" %>

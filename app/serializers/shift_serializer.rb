@@ -1,15 +1,10 @@
 class ShiftSerializer
   include FastJsonapi::ObjectSerializer
   set_type :shift
-  
 
   attribute :store do |object|
     ShiftStoreSerializer.new(object).serializable_hash
   end
-
-  # attribute :employee do |object|
-  #   ShiftEmployeeSerializer.new(object).serializable_hash
-  # end
 
   attribute :employee do |object|
     ShiftEmployeeSerializer.new(object.employee, params: { assignment: object.assignment }).serializable_hash
@@ -38,15 +33,6 @@ class ShiftSerializer
     object.jobs.map(&:name)
 
   end
-
-
-  # attribute :store do |object|
-  #   object.store&.name
-  # end
-
-  # attribute :employee do |object|
-  #   object.employee&.proper_name
-  # end
 
 
 end
