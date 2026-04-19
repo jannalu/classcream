@@ -4,8 +4,9 @@ import PropTypes from "prop-types"
 const AssignmentHistory = ({ assignments }) => {
   return (
     <div style={styles.card}>
-      <h5 style={styles.cardTitle}>Assignment History</h5>
-      <hr style={styles.divider} />
+      <div style={styles.cardHeader}>
+        <p style={styles.cardTitle}>Assignment History</p>
+      </div>
       <table style={styles.table}>
         <thead>
           <tr style={styles.thead}>
@@ -16,12 +17,17 @@ const AssignmentHistory = ({ assignments }) => {
           </tr>
         </thead>
         <tbody>
-          {assignments && assignments.map(({ data: assignment }) => (
-            <tr key={assignment.id} style={styles.tr}>
-              <td style={styles.td}>{assignment.attributes.store}</td>
-              <td style={styles.td}>{assignment.attributes.pay_grade}</td>
-              <td style={styles.td}>{assignment.attributes.start_date}</td>
-              <td style={styles.td}>{assignment.attributes.end_date || "Current"}</td>
+          {assignments && assignments.map(({ data: a }) => (
+            <tr key={a.id} style={styles.tr}>
+              <td style={styles.td}>{a.attributes.store}</td>
+              <td style={styles.td}>{a.attributes.pay_grade}</td>
+              <td style={styles.td}>{a.attributes.start_date}</td>
+              <td style={styles.td}>
+                {a.attributes.end_date
+                  ? a.attributes.end_date
+                  : <span style={styles.currentBadge}>Current</span>
+                }
+              </td>
             </tr>
           ))}
         </tbody>
@@ -33,32 +39,51 @@ const AssignmentHistory = ({ assignments }) => {
 const styles = {
   card: {
     background: "#fff",
-    borderRadius: "10px",
-    padding: "1.5rem",
-    marginTop: "1rem",
+    borderRadius: "16px",
+    border: "2px solid #c7d2fe",
+    overflow: "hidden",
+    fontFamily: "'Nunito', sans-serif",
+  },
+  cardHeader: {
+    padding: "12px 18px",
+    background: "linear-gradient(90deg, #818cf8, #60a5fa)",
   },
   cardTitle: {
-    fontSize: "1rem",
-    fontWeight: "600",
-    marginBottom: "0.5rem",
-    color: "#1a1a1a",
-  },
-  divider: {
-    borderColor: "#e0d6c8",
-    marginBottom: "1rem",
+    fontSize: "17px",
+    fontWeight: "800",
+    color: "#fff",
+    margin: 0,
+    fontFamily: "'Nunito', sans-serif",
+    letterSpacing: "0.08em",
   },
   table: { width: "100%", borderCollapse: "collapse" },
-  thead: { backgroundColor: "#1a2744" },
+  thead: { background: "#f0f9ff" },
   th: {
-    color: "#fff",
-    fontSize: "12px",
-    fontWeight: "600",
-    padding: "10px 12px",
+    padding: "10px 16px",
+    fontSize: "11px",
+    color: "#6366f1",
+    fontWeight: "800",
     textAlign: "left",
-    letterSpacing: "0.05em",
+    letterSpacing: "0.07em",
+    textTransform: "uppercase",
   },
-  tr: { borderBottom: "1px solid #f0ebe3" },
-  td: { fontSize: "14px", padding: "10px 12px", color: "#333" },
+  tr: { borderTop: "1.5px solid #f0f9ff" },
+  td: {
+    padding: "11px 16px",
+    fontSize: "14px",
+    color: "#312e81",
+    fontWeight: "600",
+  },
+  currentBadge: {
+    background: "#f0fdf4",
+    color: "#16a34a",
+    border: "1.5px solid #bbf7d0",
+    fontSize: "12px",
+    padding: "3px 10px",
+    borderRadius: "20px",
+    fontWeight: "700",
+    fontFamily: "'Nunito', sans-serif",
+  },
 }
 
 AssignmentHistory.propTypes = { assignments: PropTypes.array }

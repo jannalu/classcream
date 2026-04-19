@@ -19,36 +19,28 @@
     <%= stylesheet_link_tag "application" %>
   </head>
 
-  <body>
+  <body style="display: flex; flex-direction: column; min-height: 100vh;">
     <header>
-    <!-- Partials for the topbar and navigation -->
-    <%= render :partial => "partials/topbar" %>
-    <%= render :partial => "partials/nav" %>
-
+      <%= render :partial => "partials/topbar" %>
+      <%= render :partial => "partials/nav" %>
     </header>
-    <main>
-    <div class="container">
-      <div class="row">
-        <div class="col-12" id="main_content">
-          <!-- Flash messages appear here -->
-          <%= render :partial => "partials/flash" %>
 
-          <!-- MAIN CONTENT OF TEMPLATE GOES HERE -->
-          <%= yield %>
+    <main style="flex: 1;">
+      <div class="container-fluid px-0">
+        <div class="row">
+          <div class="col-12" id="main_content">
+            <%= render :partial => "partials/flash" %>
+            <%= yield %>
+          </div>
         </div>
       </div>
-    </div>
     </main>
-    
-    <%= render :partial => "partials/footer" %>
-    <%# javascript_importmap_tags %>
-    <%= javascript_include_tag "application" %>
-    <!-- Bootstrap JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Flatpickr JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <!-- React and React Components (loaded last) -->
+    <%= render :partial => "partials/footer" %>
+
+    <%= javascript_include_tag "application" %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <%= javascript_pack_tag "application" %>
   </body>
 </html>

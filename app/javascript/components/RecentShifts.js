@@ -12,20 +12,46 @@ const RecentShifts = ({ employeeId, shifts, onShiftChange }) => {
   }
 
   const handleDelete = (shiftId) => {
+    const token = document.querySelector('meta[name="csrf-token"]')?.content
     fetch(`/v1/shifts/${shiftId}.json`, {
       method: "DELETE",
       headers: {
-        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-      }
-    }).then(() => onShiftChange())
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(res => { if (res.ok) onShiftChange() })
+      .catch(err => console.error("Delete error:", err))
+  }
+
+  const statusBadge = (status) => {
+    const map = {
+      finished: { background: "#f0fdf4", color: "#16a34a", border: "1.5px solid #bbf7d0" },
+      pending:  { background: "#fff7ed", color: "#ea580c", border: "1.5px solid #fed7aa" },
+      started:  { background: "#eff6ff", color: "#2563eb", border: "1.5px solid #bfdbfe" },
+    }
+    const s = map[status] || { background: "#f5f3ff", color: "#7c3aed", border: "1.5px solid #ddd6fe" }
+    return {
+      ...s,
+      fontSize: "12px",
+      padding: "3px 10px",
+      borderRadius: "20px",
+      fontWeight: "700",
+      fontFamily: "'Nunito', sans-serif",
+    }
   }
 
   return (
     <div style={styles.card}>
-      <h5 style={styles.cardTitle}>Recent Shifts</h5>
-      <hr style={styles.divider} />
-      {shifts?.length === 0 ? (
-        <p style={{ fontSize: "14px", color: "#888" }}>No recent shifts.</p>
+      <div style={styles.cardHeader}>
+        <p style={styles.cardTitle}>Recent Shifts</p>
+        <button style={styles.addBtn} onClick={() => setShowForm(!showForm)}>
+          + Add Shift
+        </button>
+      </div>
+
+      {shifts.length === 0 ? (
+        <p style={styles.empty}>No recent shifts.</p>
       ) : (
         <table style={styles.table}>
           <thead>
@@ -38,15 +64,24 @@ const RecentShifts = ({ employeeId, shifts, onShiftChange }) => {
             </tr>
           </thead>
           <tbody>
-            {shifts?.map(({ data: shift }) => (
+            {shifts.map(({ data: shift }) => (
               <tr key={shift.id} style={styles.tr}>
                 <td style={styles.td}>{formatDate(shift.attributes.date)}</td>
                 <td style={styles.td}>{shift.attributes.start_time}</td>
                 <td style={styles.td}>{shift.attributes.end_time}</td>
-                <td style={styles.td}>{shift.attributes.status?.charAt(0).toUpperCase() + shift.attributes.status?.slice(1)}</td>
+                <td style={styles.td}>
+                  <span style={statusBadge(shift.attributes.status)}>
+                    {shift.attributes.status?.charAt(0).toUpperCase() + shift.attributes.status?.slice(1)}
+                  </span>
+                </td>
                 <td style={styles.td}>
                   {shift.attributes.status === "pending" && (
-                    <span style={styles.deleteBtn} onClick={() => handleDelete(shift.id)}>⊗</span>
+                    <span
+                      style={styles.deleteIcon}
+                      onClick={() => handleDelete(shift.id)}
+                    >
+                      ✕
+                    </span>
                   )}
                 </td>
               </tr>
@@ -55,14 +90,12 @@ const RecentShifts = ({ employeeId, shifts, onShiftChange }) => {
         </table>
       )}
 
-      {showForm ? (
+      {showForm && (
         <AddShiftForm
           employeeId={employeeId}
           onShiftAdded={() => { setShowForm(false); onShiftChange() }}
           onCancel={() => setShowForm(false)}
         />
-      ) : (
-        <button style={styles.addBtn} onClick={() => setShowForm(true)}>⊕ Add Shift</button>
       )}
     </div>
   )
@@ -71,45 +104,72 @@ const RecentShifts = ({ employeeId, shifts, onShiftChange }) => {
 const styles = {
   card: {
     background: "#fff",
-    borderRadius: "10px",
-    padding: "1.5rem",
-    height: "100%",
+    borderRadius: "16px",
+    border: "2px solid #f5d0fe",
+    overflow: "hidden",
+    fontFamily: "'Nunito', sans-serif",
+  },
+  cardHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "12px 18px",
+    background: "linear-gradient(90deg, #f0abfc, #a78bfa)",
   },
   cardTitle: {
-    fontSize: "1rem",
-    fontWeight: "600",
-    marginBottom: "0.5rem",
-    color: "#1a1a1a",
-  },
-  divider: { borderColor: "#e0d6c8", marginBottom: "1rem" },
-  table: { width: "100%", borderCollapse: "collapse" },
-  thead: { backgroundColor: "#1a2744" },
-  th: {
+    fontSize: "17px",
+    fontWeight: "800",
     color: "#fff",
-    fontSize: "12px",
-    fontWeight: "600",
-    padding: "10px 12px",
-    textAlign: "left",
-    letterSpacing: "0.05em",
+    margin: 0,
+    fontFamily: "'Nunito', sans-serif",
+    letterSpacing: "0.08em",
   },
-  tr: { borderBottom: "1px solid #f0ebe3" },
-  td: { fontSize: "14px", padding: "10px 12px", color: "#333" },
-  deleteBtn: { color: "crimson", cursor: "pointer", fontSize: "1.2rem" },
   addBtn: {
-    marginTop: "1rem",
-    background: "#1a2744",
-    color: "#fff",
+    background: "#fff",
+    color: "#c026d3",
     border: "none",
-    borderRadius: "6px",
-    padding: "8px 16px",
-    fontSize: "14px",
+    borderRadius: "10px",
+    padding: "5px 14px",
+    fontSize: "13px",
+    fontWeight: "800",
     cursor: "pointer",
-  }
+    fontFamily: "'Nunito', sans-serif",
+  },
+  empty: {
+    fontSize: "13px",
+    color: "#a855f7",
+    padding: "0.75rem 1rem",
+    margin: 0,
+  },
+  table: { width: "100%", borderCollapse: "collapse" },
+  thead: { background: "#fdf4ff" },
+  th: {
+    padding: "10px 16px",
+    fontSize: "11px",
+    color: "#a855f7",
+    fontWeight: "800",
+    textAlign: "left",
+    letterSpacing: "0.07em",
+    textTransform: "uppercase",
+  },
+  tr: { borderTop: "1.5px solid #fdf4ff" },
+  td: {
+    padding: "11px 16px",
+    fontSize: "14px",
+    color: "#4b2067",
+    fontWeight: "600",
+  },
+  deleteIcon: {
+    color: "#f9a8d4",
+    cursor: "pointer",
+    fontSize: "15px",
+    fontWeight: "700",
+  },
 }
 
 RecentShifts.propTypes = {
   employeeId: PropTypes.number,
   shifts: PropTypes.array,
-  onShiftChange: PropTypes.func
+  onShiftChange: PropTypes.func,
 }
 export default RecentShifts
