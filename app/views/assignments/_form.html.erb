@@ -8,17 +8,17 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= f.label :employee_id, "Employee", class: "form-label" %>
+  <div class="cc-form-group">
+    <%= f.label :employee_id, "Employee", class: "cc-label" %>
     <%= f.select :employee_id, Employee.active.alphabetical.map { |e| [e.name, e.id] }, { include_blank: "Select Employee" }, class: "form-select" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :store_id, "Store", class: "form-label" %>
+  <div class="cc-form-group">
+    <%= f.label :store_id, "Store", class: "cc-label" %>
     <%= f.select :store_id, Store.active.alphabetical.map { |s| [s.name, s.id] }, { include_blank: "Select Store" }, class: "form-select" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :pay_grade_id, "Pay grade", class: "form-label" %>
+  <div class="cc-form-group">
+    <%= f.label :pay_grade_id, "Pay grade", class: "cc-label" %>
     <%= f.select :pay_grade_id, PayGrade.all.map { |pg| [pg.level, pg.id] }, { include_blank: "Select Pay Grade" }, class: "form-select" %>
   </div>
-  <%= f.submit "Create Assignment", class: "btn btn-dark" %>
+  <%= f.submit "Create Assignment", class: "btn-cc" %>
 <% end %>

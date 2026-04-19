@@ -3,7 +3,7 @@
 <div class="row mt-3">
   <div class="col-md-6 d-flex flex-column gap-3">
 
-    <div class="card p-4">
+    <div class="cc-card">
       <h5 class="border-bottom pb-2">Employee Overview</h5>
       <p><strong>Phone:</strong> <%= @employee.phone %></p>
       <p><strong>Date of Birth:</strong> <%= @employee.date_of_birth.strftime("%B %-d, %Y") %></p>
@@ -12,7 +12,7 @@
       <p><strong>Status:</strong> <%= @employee.active? ? "Active" : "Inactive" %></p>
     </div>
 
-    <div class="card p-4">
+    <div class="cc-card">
       <h5 class="border-bottom pb-2">Assignment History</h5>
       <table class="table table-sm">
         <thead class="table-dark">
@@ -39,15 +39,15 @@
   </div>
 
   <div class="col-md-6">
-    <div class="card p-4">
+    <div class="cc-card">
       <%= react_component("EmployeeShow", { employeeId: @employee.id }) %>
     </div>
   </div>
 </div>
 
 <div class="mt-4 d-flex gap-2">
-  <%= link_to "Display All", employees_path, class: "btn btn-danger" %>
-  <%= link_to "Edit #{@employee.proper_name}", edit_employee_path(@employee), class: "btn btn-dark" %>
+  <%= link_to "Display All", employees_path, class: "btn-cc-danger" %>
+  <%= link_to "Edit #{@employee.proper_name}", edit_employee_path(@employee), class: "btn-cc" %>
   <%= link_to "Delete #{@employee.proper_name}", employee_path(@employee),
-        method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        method: :delete, data: { confirm: "Are you sure?" }, class: "btn-cc-danger" %>
 </div>

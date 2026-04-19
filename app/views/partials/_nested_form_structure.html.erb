@@ -3,14 +3,14 @@
     <%= simple_form_for(object) do |f| %>
       <%= f.error_notification %>
 
-      <div class="card mb-3">
+      <div class="card cc-form-group">
         <div class="card-header"><%= section_1_title %></div>
         <div class="card-body p-4">
           <%= render partial: "#{fields}", locals: { f: f } %>
         </div>
       </div>
 
-      <div class="card mb-3">
+      <div class="card cc-form-group">
         <div class="card-header"><%= section_2_title %></div>
         <div class="card-body p-4">
           <%= f.simple_fields_for(nested_object) do |f2| %>

@@ -8,33 +8,33 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= f.label :name, "Name", class: "form-label" %>
-    <%= f.text_field :name, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :name, "Name", class: "cc-label" %>
+    <%= f.text_field :name, class: "cc-input" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :street, "Street", class: "form-label" %>
-    <%= f.text_field :street, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :street, "Street", class: "cc-label" %>
+    <%= f.text_field :street, class: "cc-input" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :city, "City", class: "form-label" %>
-    <%= f.text_field :city, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :city, "City", class: "cc-label" %>
+    <%= f.text_field :city, class: "cc-input" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :state, "State", class: "form-label" %>
-    <%= f.text_field :state, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :state, "State", class: "cc-label" %>
+    <%= f.text_field :state, class: "cc-input" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :zip, "Zip", class: "form-label" %>
-    <%= f.text_field :zip, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :zip, "Zip", class: "cc-label" %>
+    <%= f.text_field :zip, class: "cc-input" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :phone, "Phone", class: "form-label" %>
-    <%= f.text_field :phone, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :phone, "Phone", class: "cc-label" %>
+    <%= f.text_field :phone, class: "cc-input" %>
   </div>
-  <div class="mb-3 form-check">
+  <div class="cc-form-group form-check">
     <%= f.check_box :active, class: "form-check-input" %>
     <%= f.label :active, class: "form-check-label" %>
   </div>
-  <%= f.submit class: "btn btn-dark" %>
+  <%= f.submit class: "btn-cc" %>
 <% end %>

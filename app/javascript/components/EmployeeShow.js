@@ -106,32 +106,32 @@ const EmployeeShow = ({ employeeId }) => {
       )}
 
       {!showForm ? (
-        <button className="btn btn-dark btn-sm mt-2" onClick={() => setShowForm(true)}>
+        <button className="btn-cc btn-sm mt-2" onClick={() => setShowForm(true)}>
           ⊕ Add Shift
         </button>
       ) : (
         <div className="p-3 mt-3 rounded" style={{ backgroundColor: "#f0ebe3" }}>
-          <div className="d-flex gap-3 mb-3">
+          <div className="d-flex gap-3 cc-form-group">
             <div>
-              <label className="form-label">Date</label>
+              <label className="cc-label">Date</label>
               <input
                 type="date"
-                className="form-control"
+                className="cc-input"
                 value={date}
                 onChange={e => setDate(e.target.value)}
               />
             </div>
             <div>
-              <label className="form-label">Start Time</label>
+              <label className="cc-label">Start Time</label>
               <input
                 type="time"
-                className="form-control"
+                className="cc-input"
                 value={startTime}
                 onChange={e => setStartTime(e.target.value)}
               />
             </div>
           </div>
-          <button className="btn btn-dark btn-sm me-2" onClick={handleAddShift}>
+          <button className="btn-cc btn-sm me-2" onClick={handleAddShift}>
             Save Shift
           </button>
           <button className="btn btn-link btn-sm text-muted" onClick={() => setShowForm(false)}>

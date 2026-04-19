@@ -1,10 +1,12 @@
-<div id="footer">
-  <%= link_to 'Home', home_path %>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-  <%= link_to 'About', about_path %>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-  <%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-  <%= link_to 'Privacy Policy', privacy_path %>
-  <div id="copy">
-    &copy; 2026 &mdash;
-    <%= mail_to("profh@cmu.edu", "Klingon Code Warrior", encode: "javascript") %>
+<footer id="footer" style="background-color: #1a2744; padding: 1.5rem 2rem; margin-top: 3rem; text-align: center;">
+  <div style="margin-bottom: 0.6rem;">
+    <%= link_to 'Home', home_path, style: "color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin: 0 12px;" %>
+    <%= link_to 'About', about_path, style: "color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin: 0 12px;" %>
+    <%= link_to 'Contact Us', contact_path, style: "color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin: 0 12px;" %>
+    <%= link_to 'Privacy Policy', privacy_path, style: "color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin: 0 12px;" %>
   </div>
-</div>
+  <div style="color: rgba(255,255,255,0.4); font-size: 12px;">
+    &copy; 2026 &mdash;
+    <%= mail_to("profh@cmu.edu", "Klingon Code Warrior", encode: "javascript", style: "color: rgba(255,255,255,0.5); text-decoration: none;") %>
+  </div>
+</footer>

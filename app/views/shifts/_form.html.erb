@@ -8,17 +8,17 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= f.label :assignment_id, "Assignment", class: "form-label" %>
+  <div class="cc-form-group">
+    <%= f.label :assignment_id, "Assignment", class: "cc-label" %>
     <%= f.select :assignment_id, Assignment.current.chronological.map { |a| ["#{a.employee.name} at #{a.store.name}", a.id] }, { include_blank: "Select Assignment" }, class: "form-select" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :date, "Date", class: "form-label" %>
-    <%= f.date_field :date, class: "form-control" %>
+  <div class="cc-form-group">
+    <%= f.label :date, "Date", class: "cc-label" %>
+    <%= f.date_field :date, class: "cc-input" %>
   </div>
-  <div class="mb-3">
-    <%= f.label :start_time, "Start Time", class: "form-label" %>
+  <div class="cc-form-group">
+    <%= f.label :start_time, "Start Time", class: "cc-label" %>
     <%= f.time_select :start_time, { minute_step: 15 }, class: "form-select" %>
   </div>
-  <%= f.submit "Create Shift", class: "btn btn-dark" %>
+  <%= f.submit "Create Shift", class: "btn-cc" %>
 <% end %>
