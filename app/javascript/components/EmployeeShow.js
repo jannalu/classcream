@@ -114,8 +114,8 @@ const styles = {
 
   /* sidebar */
   sidebar: {
-    width: "240px",
-    flex: "0 0 240px",
+    width: "320px",
+    flex: "0 0 320px",
     background: "linear-gradient(160deg, #ff8dc7 0%, #c084fc 60%, #818cf8 100%)",
     padding: "2rem 1.25rem",
     display: "flex",
@@ -160,8 +160,9 @@ const styles = {
     color: "#fff",
     margin: "0 auto 0.6rem",
   },
-  name:  { color: "#fff", fontWeight: "800", fontSize: "18px", margin: 0 },
-  empId: { color: "rgba(255,255,255,0.7)", fontSize: "12px", margin: "4px 0 0" },
+  name: { color: "#fff", fontWeight: "800", fontSize: "24px", margin: 0 },  
+  empId: { color: "rgba(255,255,255,0.7)", fontSize: "15px", margin: "4px 0 0" },  
+
 
   divider: {
     border: "none",

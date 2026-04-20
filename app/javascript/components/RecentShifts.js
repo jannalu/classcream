@@ -113,11 +113,11 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "12px 18px",
+    padding: "10px 14px",
     background: "linear-gradient(90deg, #f0abfc, #a78bfa)",
   },
   cardTitle: {
-    fontSize: "17px",
+    fontSize: "14px",
     fontWeight: "800",
     color: "#fff",
     margin: 0,
@@ -144,8 +144,8 @@ const styles = {
   table: { width: "100%", borderCollapse: "collapse" },
   thead: { background: "#fdf4ff" },
   th: {
-    padding: "10px 16px",
-    fontSize: "11px",
+    padding: "8px 12px",
+    fontSize: "10px",
     color: "#a855f7",
     fontWeight: "800",
     textAlign: "left",
@@ -154,7 +154,7 @@ const styles = {
   },
   tr: { borderTop: "1.5px solid #fdf4ff" },
   td: {
-    padding: "11px 16px",
+    padding: "8px 12px",
     fontSize: "14px",
     color: "#4b2067",
     fontWeight: "600",

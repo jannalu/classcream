@@ -45,11 +45,11 @@ const styles = {
     fontFamily: "'Nunito', sans-serif",
   },
   cardHeader: {
-    padding: "12px 18px",
+    padding: "10px 14px",
     background: "linear-gradient(90deg, #818cf8, #60a5fa)",
   },
   cardTitle: {
-    fontSize: "17px",
+    fontSize: "14px",
     fontWeight: "800",
     color: "#fff",
     margin: 0,
@@ -59,8 +59,8 @@ const styles = {
   table: { width: "100%", borderCollapse: "collapse" },
   thead: { background: "#f0f9ff" },
   th: {
-    padding: "10px 16px",
-    fontSize: "11px",
+    padding: "8px 12px",
+    fontSize: "10px",
     color: "#6366f1",
     fontWeight: "800",
     textAlign: "left",
@@ -69,8 +69,8 @@ const styles = {
   },
   tr: { borderTop: "1.5px solid #f0f9ff" },
   td: {
-    padding: "11px 16px",
-    fontSize: "14px",
+    padding: "8px 12px",
+    fontSize: "13px",
     color: "#312e81",
     fontWeight: "600",
   },
